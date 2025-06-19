@@ -1,0 +1,127 @@
+<html>
+<head>
+<title>MainActivity.kt</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #6aab73;}
+.s4 { color: #2aacb8;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+MainActivity.kt</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">vcmsa</span><span class="s2">.</span><span class="s1">ci</span><span class="s2">.</span><span class="s1">practicumexam</span>
+
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">content</span><span class="s2">.</span><span class="s1">Intent</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">media</span><span class="s2">.</span><span class="s1">Rating</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">os</span><span class="s2">.</span><span class="s1">Bundle</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">provider</span><span class="s2">.</span><span class="s1">MediaStore</span><span class="s2">.</span><span class="s1">Audio</span><span class="s2">.</span><span class="s1">Artists</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">view</span><span class="s2">.</span><span class="s1">View</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">Button</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">EditText</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">Toast</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">activity</span><span class="s2">.</span><span class="s1">enableEdgeToEdge</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">appcompat</span><span class="s2">.</span><span class="s1">app</span><span class="s2">.</span><span class="s1">AppCompatActivity</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">core</span><span class="s2">.</span><span class="s1">view</span><span class="s2">.</span><span class="s1">ViewCompat</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">core</span><span class="s2">.</span><span class="s1">view</span><span class="s2">.</span><span class="s1">WindowInsetsCompat</span>
+
+<span class="s0">class </span><span class="s1">MainActivity : AppCompatActivity</span><span class="s2">() {</span>
+
+  <span class="s0">var </span><span class="s1">The_song_title: EditText? </span><span class="s2">= </span><span class="s0">null</span>
+  <span class="s0">var </span><span class="s1">The_artists_name: EditText? </span><span class="s2">= </span><span class="s0">null</span>
+  <span class="s0">var </span><span class="s1">The_ratings: EditText? </span><span class="s2">= </span><span class="s0">null</span>
+  <span class="s0">var </span><span class="s1">UseraComments: EditText? </span><span class="s2">= </span><span class="s0">null</span>
+  <span class="s0">var </span><span class="s1">Addtoplaylist: Button? </span><span class="s2">= </span><span class="s0">null</span>
+  <span class="s0">var </span><span class="s1">NextB: Button? </span><span class="s2">= </span><span class="s0">null</span>
+  <span class="s0">var </span><span class="s1">ExitB: Button? </span><span class="s2">= </span><span class="s0">null</span>
+
+
+    <span class="s0">val </span><span class="s1">Questions </span><span class="s2">= </span><span class="s1">arrayOf</span><span class="s2">(</span>
+        <span class="s3">&quot;The Song Title&quot;</span><span class="s2">,</span>
+        <span class="s3">&quot;The Artist's Name&quot;</span><span class="s2">,</span>
+        <span class="s3">&quot;The Rating&quot;</span><span class="s2">,</span>
+        <span class="s3">&quot;User Comments&quot;</span>
+    <span class="s2">)</span>
+
+    <span class="s0">val </span><span class="s1">Answers </span><span class="s2">= </span><span class="s1">arrayOf</span><span class="s2">(</span>
+        <span class="s1">arrayOf</span><span class="s2">(</span><span class="s3">&quot;Bayazi&quot;</span><span class="s2">,</span><span class="s3">&quot;Best Part&quot;</span><span class="s2">,</span><span class="s3">&quot;Be careful&quot;</span><span class="s2">,</span><span class="s3">&quot;LoVE ME jeje&quot;</span><span class="s2">),</span>
+        <span class="s1">arrayOf</span><span class="s2">(</span><span class="s3">&quot;Cowboii&quot;</span><span class="s2">,</span><span class="s3">&quot;H.E.R&quot;</span><span class="s2">,</span><span class="s3">&quot;Cardi B&quot;</span><span class="s2">,</span><span class="s3">&quot;Tems&quot;</span><span class="s2">),</span>
+        <span class="s1">arrayOf</span><span class="s2">(</span><span class="s3">&quot;8&quot;</span><span class="s2">,</span><span class="s3">&quot;5&quot;</span><span class="s2">,</span><span class="s3">&quot;9&quot;</span><span class="s2">,</span><span class="s3">&quot;7&quot;</span><span class="s2">),</span>
+        <span class="s1">arrayOf</span><span class="s2">(</span><span class="s3">&quot;Amapiano&quot;</span><span class="s2">,</span><span class="s3">&quot;RNB&quot;</span><span class="s2">,</span><span class="s3">&quot;HipHop&quot;</span><span class="s2">,</span><span class="s3">&quot;Afro-Beats&quot;</span><span class="s2">)</span>
+        <span class="s2">)</span>
+
+
+    <span class="s1">override </span><span class="s0">fun </span><span class="s1">onCreate</span><span class="s2">(</span><span class="s1">savedInstanceState: Bundle?</span><span class="s2">) {</span>
+        <span class="s0">super</span><span class="s2">.</span><span class="s1">onCreate</span><span class="s2">(</span><span class="s1">savedInstanceState</span><span class="s2">)</span>
+        <span class="s1">enableEdgeToEdge</span><span class="s2">()</span>
+        <span class="s1">setContentView</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">layout</span><span class="s2">.</span><span class="s1">activity_main</span><span class="s2">)</span>
+
+      <span class="s1">The_song_title </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">&lt;</span><span class="s1">View</span><span class="s2">&gt;(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">The_Song_title</span><span class="s2">) </span><span class="s0">as </span><span class="s1">EditText</span>
+      <span class="s1">The_artists_name </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">&lt;</span><span class="s1">View</span><span class="s2">&gt;(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">The_Artists_Name</span><span class="s2">) </span><span class="s0">as </span><span class="s1">EditText</span>
+      <span class="s1">The_ratings </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">&lt;</span><span class="s1">View</span><span class="s2">&gt;(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">The_Ratng</span><span class="s2">) </span><span class="s0">as </span><span class="s1">EditText</span>
+      <span class="s1">UseraComments </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">&lt;</span><span class="s1">View</span><span class="s2">&gt;(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">User_Comments</span><span class="s2">) </span><span class="s0">as </span><span class="s1">EditText</span>
+      <span class="s1">Addtoplaylist </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">&lt;</span><span class="s1">View</span><span class="s2">&gt;(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">Add_To_Playlist</span><span class="s2">) </span><span class="s0">as </span><span class="s1">Button</span>
+      <span class="s1">NextB </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">&lt;</span><span class="s1">View</span><span class="s2">&gt;(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">NextButton</span><span class="s2">) </span><span class="s0">as </span><span class="s1">Button</span>
+      <span class="s1">ExitB </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">&lt;</span><span class="s1">View</span><span class="s2">&gt;(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">ExitButton</span><span class="s2">) </span><span class="s0">as </span><span class="s1">Button</span>
+
+
+       <span class="s1">Addtoplaylist</span><span class="s2">!!.</span><span class="s1">setOnClickListener </span><span class="s2">{</span>
+           <span class="s0">val </span><span class="s1">Songs</span><span class="s2">= </span><span class="s1">The_song_title</span><span class="s2">!!.</span><span class="s1">text</span><span class="s2">.</span><span class="s1">toString</span><span class="s2">()</span>
+           <span class="s0">val </span><span class="s1">Artists </span><span class="s2">= </span><span class="s1">The_artists_name</span><span class="s2">!!.</span><span class="s1">text</span><span class="s2">.</span><span class="s1">toString</span><span class="s2">()</span>
+           <span class="s0">val </span><span class="s1">Ratings </span><span class="s2">= </span><span class="s1">The_ratings</span><span class="s2">!!.</span><span class="s1">text</span><span class="s2">.</span><span class="s1">toString</span><span class="s2">().</span><span class="s1">toInt</span><span class="s2">()</span>
+           <span class="s0">val </span><span class="s1">Comments </span><span class="s2">= </span><span class="s1">UseraComments</span><span class="s2">!!.</span><span class="s1">text</span><span class="s2">.</span><span class="s1">toString</span><span class="s2">()</span>
+
+           <span class="s0">if </span><span class="s2">(</span><span class="s1">Songs</span><span class="s2">.</span><span class="s1">isEmpty</span><span class="s2">()||</span><span class="s1">Artists</span><span class="s2">.</span><span class="s1">isEmpty</span><span class="s2">()||</span><span class="s1">Comments</span><span class="s2">.</span><span class="s1">isEmpty</span><span class="s2">()) {</span>
+               <span class="s1">Toast</span><span class="s2">.</span><span class="s1">makeText</span><span class="s2">(</span><span class="s0">this</span><span class="s2">, </span><span class="s3">&quot;Please fill all the fields&quot;</span><span class="s2">, </span><span class="s1">Toast</span><span class="s2">.</span><span class="s1">LENGTH_SHORT</span><span class="s2">).</span><span class="s1">show</span><span class="s2">()</span>
+               <span class="s0">return</span><span class="s1">@setOnClickListener</span>
+           <span class="s2">}</span>
+
+           <span class="s0">val </span><span class="s1">Rating </span><span class="s2">=  </span><span class="s1">Ratings</span><span class="s2">.</span><span class="s1">toInt</span><span class="s2">()</span><span class="s1">or </span><span class="s0">null</span><span class="s2">()</span>
+           <span class="s0">if </span><span class="s2">(</span><span class="s1">Rating </span><span class="s2">== </span><span class="s0">null </span><span class="s2">|| </span><span class="s1">Rating</span><span class="s2">&lt;= </span><span class="s4">0</span><span class="s2">){</span>
+               <span class="s1">Toast</span><span class="s2">.</span><span class="s1">makeText</span><span class="s2">(</span><span class="s0">this</span><span class="s2">, </span><span class="s3">&quot;Enter&quot;</span><span class="s2">)</span>
+           <span class="s2">}</span>
+
+
+
+
+           <span class="s2">}</span>
+
+
+
+
+
+
+
+
+
+
+    <span class="s1">NextB</span><span class="s2">!!.</span><span class="s1">setOnClickListener </span><span class="s2">{</span>
+        <span class="s0">val </span><span class="s1">Intent </span><span class="s2">= </span><span class="s1">Intent</span><span class="s2">(</span><span class="s0">this</span><span class="s2">, </span><span class="s1">DetailedView::</span><span class="s0">class</span><span class="s2">.</span><span class="s1">java</span><span class="s2">)</span>
+        <span class="s1">startActivity</span><span class="s2">(</span><span class="s1">intent</span><span class="s2">)</span>
+        <span class="s1">finish</span><span class="s2">()</span>
+    <span class="s2">}</span>
+    <span class="s1">ExitB</span><span class="s2">!!.</span><span class="s1">setOnClickListener </span><span class="s2">{</span>
+        <span class="s1">finishAffinity</span><span class="s2">()</span>
+    <span class="s2">}</span>
+
+
+
+
+
+
+
+        <span class="s1">ViewCompat</span><span class="s2">.</span><span class="s1">setOnApplyWindowInsetsListener</span><span class="s2">(</span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">main</span><span class="s2">)) { </span><span class="s1">v</span><span class="s2">, </span><span class="s1">insets </span><span class="s2">-&gt;</span>
+            <span class="s0">val </span><span class="s1">systemBars </span><span class="s2">= </span><span class="s1">insets</span><span class="s2">.</span><span class="s1">getInsets</span><span class="s2">(</span><span class="s1">WindowInsetsCompat</span><span class="s2">.</span><span class="s1">Type</span><span class="s2">.</span><span class="s1">systemBars</span><span class="s2">())</span>
+            <span class="s1">v</span><span class="s2">.</span><span class="s1">setPadding</span><span class="s2">(</span><span class="s1">systemBars</span><span class="s2">.</span><span class="s1">left</span><span class="s2">, </span><span class="s1">systemBars</span><span class="s2">.</span><span class="s1">top</span><span class="s2">, </span><span class="s1">systemBars</span><span class="s2">.</span><span class="s1">right</span><span class="s2">, </span><span class="s1">systemBars</span><span class="s2">.</span><span class="s1">bottom</span><span class="s2">)</span>
+            <span class="s1">insets</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+<span class="s2">}</span></pre>
+</body>
+</html>

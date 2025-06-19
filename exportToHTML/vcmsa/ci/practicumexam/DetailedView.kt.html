@@ -1,0 +1,105 @@
+<html>
+<head>
+<title>DetailedView.kt</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<style type="text/css">
+.s0 { color: #cf8e6d;}
+.s1 { color: #bcbec4;}
+.s2 { color: #bcbec4;}
+.s3 { color: #6aab73;}
+</style>
+</head>
+<body bgcolor="#1e1f22">
+<table CELLSPACING=0 CELLPADDING=5 COLS=1 WIDTH="100%" BGCOLOR="#606060" >
+<tr><td><center>
+<font face="Arial, Helvetica" color="#000000">
+DetailedView.kt</font>
+</center></td></tr></table>
+<pre><span class="s0">package </span><span class="s1">vcmsa</span><span class="s2">.</span><span class="s1">ci</span><span class="s2">.</span><span class="s1">practicumexam</span>
+
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">content</span><span class="s2">.</span><span class="s1">Intent</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">os</span><span class="s2">.</span><span class="s1">Bundle</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">provider</span><span class="s2">.</span><span class="s1">MediaStore</span><span class="s2">.</span><span class="s1">Audio</span><span class="s2">.</span><span class="s1">Artists</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">view</span><span class="s2">.</span><span class="s1">View</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">Button</span>
+<span class="s1">import android</span><span class="s2">.</span><span class="s1">widget</span><span class="s2">.</span><span class="s1">TextView</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">activity</span><span class="s2">.</span><span class="s1">enableEdgeToEdge</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">appcompat</span><span class="s2">.</span><span class="s1">app</span><span class="s2">.</span><span class="s1">AppCompatActivity</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">core</span><span class="s2">.</span><span class="s1">view</span><span class="s2">.</span><span class="s1">ViewCompat</span>
+<span class="s1">import androidx</span><span class="s2">.</span><span class="s1">core</span><span class="s2">.</span><span class="s1">view</span><span class="s2">.</span><span class="s1">WindowInsetsCompat</span>
+
+<span class="s0">class </span><span class="s1">DetailedView : AppCompatActivity</span><span class="s2">() {</span>
+
+   <span class="s0">var </span><span class="s1">Listofsongs: Button? </span><span class="s2">= </span><span class="s0">null</span>
+   <span class="s0">var </span><span class="s1">Calculate: Button? </span><span class="s2">= </span><span class="s0">null</span>
+   <span class="s0">var </span><span class="s1">ReturnB: Button? </span><span class="s2">= </span><span class="s0">null</span>
+   <span class="s0">var </span><span class="s1">list: TextView? </span><span class="s2">= </span><span class="s0">null</span>
+   <span class="s0">var </span><span class="s1">Calculations_: TextView? </span><span class="s2">= </span><span class="s0">null</span>
+
+    <span class="s1">override </span><span class="s0">fun </span><span class="s1">onCreate</span><span class="s2">(</span><span class="s1">savedInstanceState: Bundle?</span><span class="s2">) {</span>
+        <span class="s0">super</span><span class="s2">.</span><span class="s1">onCreate</span><span class="s2">(</span><span class="s1">savedInstanceState</span><span class="s2">)</span>
+        <span class="s1">enableEdgeToEdge</span><span class="s2">()</span>
+        <span class="s1">setContentView</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">layout</span><span class="s2">.</span><span class="s1">activity_detailed_view</span><span class="s2">)</span>
+
+      <span class="s1">Listofsongs </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">&lt;</span><span class="s1">View</span><span class="s2">&gt;(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">ListofSongs</span><span class="s2">) </span><span class="s0">as </span><span class="s1">Button</span>
+      <span class="s1">Calculate </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">&lt;</span><span class="s1">View</span><span class="s2">&gt;(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">Calculate_avr</span><span class="s2">) </span><span class="s0">as </span><span class="s1">Button</span>
+      <span class="s1">ReturnB </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">&lt;</span><span class="s1">View</span><span class="s2">&gt;(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">ReturnButton</span><span class="s2">) </span><span class="s0">as </span><span class="s1">Button</span>
+      <span class="s1">list </span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">&lt;</span><span class="s1">View</span><span class="s2">&gt;(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">Output1</span><span class="s2">) </span><span class="s0">as </span><span class="s1">TextView</span>
+      <span class="s1">Calculations_</span><span class="s2">= </span><span class="s1">findViewById</span><span class="s2">&lt;</span><span class="s1">View</span><span class="s2">&gt;(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">Output2</span><span class="s2">) </span><span class="s0">as </span><span class="s1">TextView</span>
+
+        <span class="s1">Listofsongs</span><span class="s2">!!.</span><span class="s1">setOnClickListener </span><span class="s2">{</span>
+         <span class="s0">val </span><span class="s1">textView: TextView</span><span class="s2">=</span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">Output1</span><span class="s2">)</span>
+            <span class="s1">textView</span><span class="s2">.</span><span class="s1">text</span><span class="s2">=</span><span class="s3">&quot;&quot;</span>
+            <span class="s0">for </span><span class="s2">(</span><span class="s1">i </span><span class="s0">in </span><span class="s1">Songs</span><span class="s2">.</span><span class="s1">indices</span><span class="s2">){</span>
+                <span class="s1">textView </span><span class="s2">= </span><span class="s3">&quot;</span><span class="s0">${</span><span class="s1">textView</span><span class="s2">.</span><span class="s1">text</span><span class="s0">}\n${</span><span class="s1">Songs</span><span class="s2">[</span><span class="s1">i</span><span class="s2">]</span><span class="s0">} </span><span class="s3">by </span><span class="s0">${</span><span class="s1">Artists</span><span class="s2">[</span><span class="s1">i</span><span class="s2">]</span><span class="s0">} </span><span class="s3">- Rating: </span><span class="s0">${</span><span class="s1">Rating</span><span class="s2">[</span><span class="s1">i</span><span class="s2">]</span><span class="s0">} </span><span class="s3">- Comments: </span><span class="s0">${</span><span class="s1">Comments</span><span class="s2">[</span><span class="s1">i</span><span class="s2">]</span><span class="s0">}</span><span class="s3">&quot;</span>
+            <span class="s2">}</span>
+
+
+            <span class="s2">}</span>
+
+
+
+
+      <span class="s1">Calculate</span><span class="s2">!!.</span><span class="s1">setOnClickListener </span><span class="s2">{</span>
+          <span class="s0">val </span><span class="s1">textView: TextView</span><span class="s2">=</span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">Calculate_avr</span><span class="s2">)</span>
+          <span class="s1">textView</span><span class="s2">.</span><span class="s1">text</span><span class="s2">=</span><span class="s3">&quot;Rating: </span><span class="s0">${</span><span class="s1">Calculate_avr</span><span class="s2">()</span><span class="s0">}</span><span class="s3">&quot;</span>
+      <span class="s2">}</span>
+
+
+
+
+
+
+        <span class="s1">ReturnB</span><span class="s2">!!.</span><span class="s1">setOnClickListener </span><span class="s2">{</span>
+            <span class="s0">val </span><span class="s1">Intent </span><span class="s2">= </span><span class="s1">Intent</span><span class="s2">(</span><span class="s0">this</span><span class="s2">, </span><span class="s1">MainActivity::</span><span class="s0">class</span><span class="s2">.</span><span class="s1">java</span><span class="s2">)</span>
+            <span class="s1">startActivity</span><span class="s2">(</span><span class="s1">intent</span><span class="s2">)</span>
+            <span class="s1">finish</span><span class="s2">()</span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <span class="s1">ViewCompat</span><span class="s2">.</span><span class="s1">setOnApplyWindowInsetsListener</span><span class="s2">(</span><span class="s1">findViewById</span><span class="s2">(</span><span class="s1">R</span><span class="s2">.</span><span class="s1">id</span><span class="s2">.</span><span class="s1">main</span><span class="s2">)) { </span><span class="s1">v</span><span class="s2">, </span><span class="s1">insets </span><span class="s2">-&gt;</span>
+            <span class="s0">val </span><span class="s1">systemBars </span><span class="s2">= </span><span class="s1">insets</span><span class="s2">.</span><span class="s1">getInsets</span><span class="s2">(</span><span class="s1">WindowInsetsCompat</span><span class="s2">.</span><span class="s1">Type</span><span class="s2">.</span><span class="s1">systemBars</span><span class="s2">())</span>
+            <span class="s1">v</span><span class="s2">.</span><span class="s1">setPadding</span><span class="s2">(</span><span class="s1">systemBars</span><span class="s2">.</span><span class="s1">left</span><span class="s2">, </span><span class="s1">systemBars</span><span class="s2">.</span><span class="s1">top</span><span class="s2">, </span><span class="s1">systemBars</span><span class="s2">.</span><span class="s1">right</span><span class="s2">, </span><span class="s1">systemBars</span><span class="s2">.</span><span class="s1">bottom</span><span class="s2">)</span>
+            <span class="s1">insets</span>
+        <span class="s2">}</span>
+    <span class="s2">}</span>
+<span class="s2">}</span>
+
+    <span class="s1">private </span><span class="s0">fun </span><span class="s1">Calculate_avr</span><span class="s2">()</span><span class="s1">: String </span><span class="s2">{</span>
+
+<span class="s2">}</span>
+
+
+</pre>
+</body>
+</html>
